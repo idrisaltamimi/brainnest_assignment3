@@ -13,6 +13,7 @@ const computerPlay = () => {
 // a recursive function to make sure that the player enters a valid value
 const playerPlay = () => {
   const playerInput = window.prompt('Choose Rock, Paper, or Scissors', '').toLowerCase()
+
   if (playingChoices.includes(playerInput)) {
     return playerInput
   }
@@ -67,8 +68,11 @@ const play = () => {
 
 function playAgain() {
   const playAgainInput = window.prompt('Enter "play" to play again', 'play').toLowerCase()
+
   if (playAgainInput === 'play') {
     console.clear()
+    playerScore = 0
+    computerScore = 0
     return play()
   }
 }
