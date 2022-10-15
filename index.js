@@ -1,20 +1,20 @@
 const ROCK = 'rock'
 const PAPER = 'paper'
 const SCISSORS = 'scissors'
-const playingChoices = [ROCK, PAPER, SCISSORS]
+const playingOptionsArray = [ROCK, PAPER, SCISSORS]
 
 let playerScore = 0
 let computerScore = 0
 
 const computerPlay = () => {
-  return playingChoices[Math.floor(Math.random() * 3)]
+  return playingOptionsArray[Math.floor(Math.random() * 3)]
 }
 
 // a recursive function to make sure that the player enters a valid value
 const playerPlay = () => {
   const playerInput = window.prompt('Choose Rock, Paper, or Scissors', '').toLowerCase()
 
-  if (playingChoices.includes(playerInput)) {
+  if (playingOptionsArray.includes(playerInput)) {
     return playerInput
   }
   else {
@@ -43,6 +43,7 @@ const playRound = (playerSelection, computerSelection) => {
   else if (checkCondition(ROCK, SCISSORS)) return wonRound()
   else if (checkCondition(SCISSORS, PAPER)) return wonRound()
   else if (checkCondition(PAPER, ROCK)) return wonRound()
+
   return lostRound()
 }
 
