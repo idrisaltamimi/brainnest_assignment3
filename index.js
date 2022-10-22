@@ -1,7 +1,9 @@
-const ROCK = 'rock'
-const PAPER = 'paper'
-const SCISSORS = 'scissors'
-const playingOptionsArray = [ROCK, PAPER, SCISSORS]
+const playerScoreTextElement = document.querySelector('#player-score')
+const computerScoreTextElement = document.querySelector('#computer-score')
+const playerChoiceSection = document.querySelector('#player-choice')
+const computerChoiceSection = document.querySelector('#computer-choice')
+const playerPickButtons = document.querySelectorAll('.player-pick')
+const playingOptionsArray = ['✊', '🤚', '✌️']
 
 let playerScore = 0
 let computerScore = 0
@@ -10,61 +12,31 @@ const computerPlay = () => {
   return playingOptionsArray[Math.floor(Math.random() * 3)]
 }
 
-// a recursive function to make sure that the player enters a valid value
-const playerPlay = () => {
-  const playerInput = window.prompt('Choose Rock, Paper, or Scissors', '').toLowerCase()
-
-  if (playingOptionsArray.includes(playerInput)) {
-    return playerInput
-  }
-  else {
-    alert('INVALID INPUT! Choose: Rock, Paper, or Scissors')
-    playerPlay()
-  }
-}
-
 const playRound = (playerSelection, computerSelection) => {
+  playerChoiceSection.innerText = playerSelection
+  computerChoiceSection.innerText = computerSelection
+
   const wonRound = () => {
     playerScore++
-    return `you win, ${playerSelection} beats ${computerSelection}`
+    playerScoreTextElement.innerText = playerScore
   }
-
   const lostRound = () => {
     computerScore++
-    return `you lose, ${computerSelection} beats ${playerSelection}`
+    computerScoreTextElement.innerText = computerScore
   }
 
   // Game conditions
   const checkCondition = (playerHand, computerHand) => {
     return playerSelection === playerHand && computerSelection === computerHand
   }
-
-  if (playerSelection === computerSelection) return 'you draw'
-  else if (checkCondition(ROCK, SCISSORS)) return wonRound()
-  else if (checkCondition(SCISSORS, PAPER)) return wonRound()
-  else if (checkCondition(PAPER, ROCK)) return wonRound()
-
-  return lostRound()
-}
-
-const play = () => {
-  for (let i = 0; i < 5; i++) {
-    console.log(playRound(playerPlay(), computerPlay()))
-  }
-
-  // The result of the game
-  if (playerScore === computerScore) {
-    alert('It\'s a draw')
-    return playAgain()
-  }
-  else if (playerScore > computerScore) {
-    alert('You are the winner 🥳')
-    return playAgain()
-  }
-  else if (playerScore < computerScore) {
-    alert('You have lost 💀')
-    return playAgain()
-  }
+  if (checkCondition('✊', '✌️') ||
+    checkCondition('✌️', '🤚') ||
+    checkCondition('🤚', '✊')
+  ) return wonRound()
+  else if (checkCondition('✌️', '✊') ||
+    checkCondition('🤚', '✌️') ||
+    checkCondition('✊', '🤚')
+  ) return lostRound()
 }
 
 function playAgain() {
@@ -78,6 +50,8 @@ function playAgain() {
   }
 }
 
-setTimeout(() => {
-  play()
-}, 1000)
+playerPickButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    playRound(button.innerText, computerPlay())
+  })
+})

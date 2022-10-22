@@ -6,26 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="index.js" defer></script>
+  <link rel="stylesheet" href="index.css">
   <title>Play a Rock, Paper, Scissors</title>
 </head>
 
 <body>
-  <style type="text/css">
-    body {
-      height: 100vh;
-      margin: 0;
-      color: white;
-      background-color: rgb(54, 51, 66);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 50px;
-    }
-  </style>
-  <h1>Play a Rock ✊, Paper 🤚, Scissors ✌️ Game</h1>
+  <div class="score-container">
+    <h2>Player Score <span id="player-score">0</span></h2>
+    <h2>Computer Score <span id="computer-score">0</span></h2>
+  </div>
+  <div class="play-container">
+    <div id="player-choice"></div>
+    <div id="computer-choice"></div>
+  </div>
+  <div class="player-pick-container">
+    <button class="player-pick" id="rock">✊</button>
+    <button class="player-pick" id="paper">🤚</button>
+    <button class="player-pick" id="scissors">✌️</button>
+  </div>
+  <button id="rest-btn">Rest Score</button>
 </body>
 
 </html>
