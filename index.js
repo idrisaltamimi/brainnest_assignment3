@@ -3,6 +3,7 @@ const computerScoreTextElement = document.querySelector('#computer-score')
 const playerChoiceSection = document.querySelector('#player-choice')
 const computerChoiceSection = document.querySelector('#computer-choice')
 const playerPickButtons = document.querySelectorAll('.player-pick')
+const resetButton = document.querySelector('#rest-btn')
 const playingOptionsArray = ['✊', '🤚', '✌️']
 
 let playerScore = 0
@@ -54,4 +55,13 @@ playerPickButtons.forEach(button => {
   button.addEventListener('click', () => {
     playRound(button.innerText, computerPlay())
   })
+})
+
+resetButton.addEventListener('click', () => {
+  playerChoiceSection.innerText = ''
+  computerChoiceSection.innerText = ''
+  playerScoreTextElement.innerText = 0
+  computerScoreTextElement.innerText = 0
+  playerScore = 0
+  computerScore = 0
 })
