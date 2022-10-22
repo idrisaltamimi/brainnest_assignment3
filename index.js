@@ -40,15 +40,13 @@ const playRound = (playerSelection, computerSelection) => {
   ) return lostRound()
 }
 
-function playAgain() {
-  const playAgainInput = window.prompt('Enter "play" to play again', 'play').toLowerCase()
-
-  if (playAgainInput === 'play') {
-    console.clear()
-    playerScore = 0
-    computerScore = 0
-    return play()
-  }
+const resetGame = () => {
+  playerChoiceSection.innerText = ''
+  computerChoiceSection.innerText = ''
+  playerScoreTextElement.innerText = 0
+  computerScoreTextElement.innerText = 0
+  playerScore = 0
+  computerScore = 0
 }
 
 playerPickButtons.forEach(button => {
@@ -57,11 +55,4 @@ playerPickButtons.forEach(button => {
   })
 })
 
-resetButton.addEventListener('click', () => {
-  playerChoiceSection.innerText = ''
-  computerChoiceSection.innerText = ''
-  playerScoreTextElement.innerText = 0
-  computerScoreTextElement.innerText = 0
-  playerScore = 0
-  computerScore = 0
-})
+resetButton.addEventListener('click', resetGame)
